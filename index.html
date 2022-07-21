@@ -1,14 +1,30 @@
 <!DOCTYPE html>
 <html>
+
 <head>
+    <title>Mine Sweeper ! ! !</title>
     <meta charset='utf-8'>
     <meta http-equiv='X-UA-Compatible' content='IE=edge'>
-    <title>Page Title</title>
     <meta name='viewport' content='width=device-width, initial-scale=1'>
-    <link rel='stylesheet' type='text/css' media='screen' href='main.css'>
-    <script src='main.js'></script>
+    <link rel='stylesheet' type='text/css' media='screen' href='css/style.css'>
 </head>
-<body>
-    
+
+
+<body onload="init()">
+    <h1>Mine Sweeper</h1>
+    <div class="container">
+        <button class="hearts">💚💚💚</button>
+        <button class="smiley" onclick="init()">😃</button>
+        <button class="timer">⏱️</button>
+    </div>
+    <div class="table"></div>
+
+    <script src='js/utils.js'></script>
+    <script src='js/main.js'></script>
 </body>
+
 </html>
+
+<!-- <div oncontextmenu="";return false;">
+    Lorem Ipsum
+</div> -->

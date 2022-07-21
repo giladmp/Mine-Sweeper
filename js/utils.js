@@ -94,9 +94,9 @@ function renderCinema() {
             const cellTitle = `Cell: ${i}, ${j}`
             // for cell of type SEAT add seat class
             // for cell that is booked add booked class
-            var className = (cell.isSeat)? 'seat' : ''
-            className += (cell.isBooked)? ' booked' : ''
-            
+            var className = (cell.isSeat) ? 'seat' : ''
+            className += (cell.isBooked) ? ' booked' : ''
+
             strHTML += `\t<td class="cell ${className}" 
                             title="${cellTitle}" 
                             onclick="cellClicked(this, ${i}, ${j})" >
@@ -112,7 +112,7 @@ function renderCinema() {
 
 function cellClicked(elCell, i, j) {
     const cell = gCinema[i][j]
-    
+
     // Ignore none seats and booked
     if (!cell.isSeat || cell.isBooked) return
     console.log('Cell clicked: ', elCell, i, j)
@@ -121,13 +121,16 @@ function cellClicked(elCell, i, j) {
     if (gElSelectedSeat) {
         gElSelectedSeat.classList.remove('selected')
     }
-    
+
     // Support Unselecting a seat
-    gElSelectedSeat = (gElSelectedSeat !== elCell)? elCell : null
+    gElSelectedSeat = (gElSelectedSeat !== elCell) ? elCell : null
 
     // When seat is selected a popup is shown
     if (gElSelectedSeat) {
         gElSelectedSeat.classList.add('selected')
-        showSeatDetails({i:i, j:j})
-    } 
+        showSeatDetails({ i: i, j: j })
+    }
 }
+
+
+//parse
