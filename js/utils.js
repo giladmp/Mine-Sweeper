@@ -27,7 +27,6 @@ function createBoard() {
     return board
 }
 
-// render board. selector = 
 function printMat(mat, selector) {
 
     var strHTML = '<table border="0"><tbody>'
@@ -49,7 +48,6 @@ function printMat(mat, selector) {
     elContainer.innerHTML = strHTML
 }
 
-// Select the elCell and set the value
 function renderCell(location, value) {
     const elCell = document.querySelector(`.cell-${location.i}-${location.j}`)
     elCell.innerHTML = value
@@ -64,72 +62,8 @@ function getRandomColor() {
     return color
 }
 
-function countNegSeats(cellI, cellJ, mat) {
-    var negSeatsCount = 0
-
-    for (var i = cellI - 1; i <= cellI + 1; i++) {
-        if (i < 0 || i >= mat.length) continue
-
-        for (var j = cellJ - 1; j <= cellJ + 1; j++) {
-            if (j < 0 || j >= mat[i].length) continue
-            if (i === cellI && j === cellJ) continue
-            if (mat[i][j].isSeat && !mat[i][j].isBooked) negSeatsCount++
-        }
-    }
-    return negSeatsCount
-}
-
 function isEmptyCell(coord) {
     return gBoard[coord.i][coord.j] === ''
-}
-
-function renderCinema() {
-    var strHTML = ''
-    for (var i = 0; i < gCinema.length; i++) {
-        strHTML += `<tr class="cinema-row" >\n`
-        for (var j = 0; j < gCinema[0].length; j++) {
-            const cell = gCinema[i][j]
-
-            // add a seat title 
-            const cellTitle = `Cell: ${i}, ${j}`
-            // for cell of type SEAT add seat class
-            // for cell that is booked add booked class
-            var className = (cell.isSeat) ? 'seat' : ''
-            className += (cell.isBooked) ? ' booked' : ''
-
-            strHTML += `\t<td class="cell ${className}" 
-                            title="${cellTitle}" 
-                            onclick="cellClicked(this, ${i}, ${j})" >
-                         </td>\n`
-        }
-        strHTML += `</tr>\n`
-    }
-    // console.log(strHTML)
-
-    const elSeats = document.querySelector('.cinema-seats')
-    elSeats.innerHTML = strHTML
-}
-
-function cellClicked(elCell, i, j) {
-    const cell = gCinema[i][j]
-
-    // Ignore none seats and booked
-    if (!cell.isSeat || cell.isBooked) return
-    console.log('Cell clicked: ', elCell, i, j)
-
-    // Only a single seat should be selected
-    if (gElSelectedSeat) {
-        gElSelectedSeat.classList.remove('selected')
-    }
-
-    // Support Unselecting a seat
-    gElSelectedSeat = (gElSelectedSeat !== elCell) ? elCell : null
-
-    // When seat is selected a popup is shown
-    if (gElSelectedSeat) {
-        gElSelectedSeat.classList.add('selected')
-        showSeatDetails({ i: i, j: j })
-    }
 }
 
 

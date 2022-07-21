@@ -83,3 +83,8 @@ button {
     background-color: rgb(255, 255, 255);
     margin: 10px;
 }
+
+.low {
+    height: 30px;
+    width: 50px;
+}

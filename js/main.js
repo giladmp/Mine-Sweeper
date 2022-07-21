@@ -17,7 +17,7 @@ var gTimer = 0
 var gStartTime
 var gBoard = []
 var gLives = 3
-var gLevel = { size: 4, mines: 1 }
+var gLevel = { size: 4, mines: 2 }
 var gGame = {
     isOn: true,
     shownCount: 0,
@@ -138,6 +138,7 @@ function renderBoard(board) {
 }
 
 function cellClicked(elCell, i, j) {
+
     const cell = gBoard[i][j]
     if (!gGame.isOn) return
 
@@ -151,17 +152,19 @@ function cellClicked(elCell, i, j) {
     if (cell.isMine) {
         cell.isShown = true
         renderBoard(gBoard)
-        checkGameOver(false)
+        checkGameOver(false, gBoard)
         return
     }
     cell.isShown = true
-    // checkGameOver(true = win)
+    // checkGameOver(true)
     renderBoard(gBoard)
 }
 
 function handleFlags(ev, i, j) {
     // gBoard[i][j].isMarked = true
-    checkGameOver(true)
+    if (!gGame.isOn) return
+    
+    checkGameOver(true, gBoard)
 
     var cell = gBoard[i][j]
 
@@ -182,7 +185,7 @@ function handleFlags(ev, i, j) {
     return false
 }
 
-function checkGameOver(checkWin) {
+function checkGameOver(checkWin, gBoard) {
     var heart = document.querySelector(".hearts")
     var smiley = document.querySelector(".smiley")
     console.log('checkGameOver')
@@ -272,4 +275,14 @@ function resetTimer(updateHTML) {
         var timer = document.querySelector(".timer")
         timer.innerText = CLOCK
     }
+}
+function resizeBoard(boardSize) {
+    gLevel.size = boardSize 
+    gLevel.mines = (((boardSize - 2) * 2) - 2)
+    init()
+}
+
+trialAndError()
+function trialAndError() {
+    console.log('hi')
 }
